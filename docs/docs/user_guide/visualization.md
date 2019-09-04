@@ -68,29 +68,27 @@ Out[12]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65d97c1668>
 
 ![df_plot_xy](/static/images/df_plot_xy.png)
 
-::: tip Note
+::: tip 提示
 
-For more formatting and styling options, see
-[formatting](#visualization-formatting) below.
+更多格式化和样式选项，参见[formatting](#visualization-formatting).
 
 :::
 
-## Other plots
+## 其他图表
 
 Plotting methods allow for a handful of plot styles other than the
-default line plot. These methods can be provided as the ``kind``
-keyword argument to [``plot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot), and include:
+default line plot绘图方法提供除了默认线图以外的很多图表样式。这些方法可以通过使``kind``关键字参数传入 [``plot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot)，他们包括:
 
-- [‘bar’](#visualization-barplot) or [‘barh’](#visualization-barplot) for bar plots
-- [‘hist’](#visualization-hist) for histogram
-- [‘box’](#visualization-box) for boxplot
-- [‘kde’](#visualization-kde) or [‘density’](#visualization-kde) for density plots
-- [‘area’](#visualization-area-plot) for area plots
-- [‘scatter’](#visualization-scatter) for scatter plots
-- [‘hexbin’](#visualization-hexbin) for hexagonal bin plots
-- [‘pie’](#visualization-pie) for pie plots
+- [‘bar’](#visualization-barplot) 或 [‘barh’](#visualization-barplot) 条状图
+- [‘hist’](#visualization-hist) 柱状图
+- [‘box’](#visualization-box) 箱型图
+- [‘kde’](#visualization-kde) 或 [‘density’](#visualization-kde) 密度图
+- [‘area’](#visualization-area-plot) 面积图
+- [‘scatter’](#visualization-scatter) 散点图
+- [‘hexbin’](#visualization-hexbin) 六边形热力图
+- [‘pie’](#visualization-pie) 饼状图
 
-For example, a bar plot can be created the following way:
+例如，条状图可以用下列方法绘制:
 
 ``` python
 In [13]: plt.figure();
@@ -100,7 +98,7 @@ In [14]: df.iloc[5].plot(kind='bar');
 
 ![bar_plot_ex](/static/images/bar_plot_ex.png)
 
-You can also create these other plots using the methods ``DataFrame.plot.`` instead of providing the ``kind`` keyword argument. This makes it easier to discover plot methods and the specific arguments they use:
+你也可以使用``DataFrame.plot.``来替代向 ``kind``关键字传递参数的方式来绘制。这样可以使你更快地了解各种绘图方法以及他们所需要的参数:
 
 ``` python
 In [15]: df = pd.DataFrame()
@@ -110,12 +108,10 @@ df.plot.area     df.plot.barh     df.plot.density  df.plot.hist     df.plot.line
 df.plot.bar      df.plot.box      df.plot.hexbin   df.plot.kde      df.plot.pie
 ```
 
-In addition to these ``kind`` s, there are the [DataFrame.hist()](#visualization-hist),
-and [DataFrame.boxplot()](#visualization-box) methods, which use a separate interface.
+除了这些``kind``(种类),我们还有 [DataFrame.hist()](#visualization-hist),
+和[DataFrame.boxplot()](#visualization-box)方法，他们将会使用独立的界面.
 
-Finally, there are several [plotting functions](#visualization-tools) in ``pandas.plotting``
-that take a [``Series``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series) or [``DataFrame``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame) as an argument. These
-include:
+最后，还有一些函数[plotting functions](#visualization-tools)在``pandas.plotting``下面。他们接受一个[``Series``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.html#pandas.Series) 或 [``DataFrame``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.html#pandas.DataFrame) 作文他们的参数。他们包括：:
 
 - [Scatter Matrix](#visualization-scatter-matrix)
 - [Andrews Curves](#visualization-andrews-curves)
@@ -125,12 +121,12 @@ include:
 - [Bootstrap Plot](#visualization-bootstrap)
 - [RadViz](#visualization-radviz)
 
-Plots may also be adorned with [errorbars](#visualization-errorbars)
-or [tables](#visualization-table).
+图表也可以添加[errorbars](#visualization-errorbars)
+或 [tables](#visualization-table).
 
-### Bar plots
+### 条状图
 
-For labeled, non-time series data, you may wish to produce a bar plot:
+对于有标签的，非时序的数据，你有可能会想要使用条状图:
 
 ``` python
 In [17]: plt.figure();
@@ -143,8 +139,7 @@ In [19]: plt.axhline(0, color='k');
 
 ![bar_plot_ex](/static/images/bar_plot_ex.png)
 
-Calling a DataFrame’s [``plot.bar()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.bar.html#pandas.DataFrame.plot.bar) method produces a multiple
-bar plot:
+调用DataFrame的 [``plot.bar()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.bar.html#pandas.DataFrame.plot.bar) 方法，可以生成多个条状图:
 
 ``` python
 In [20]: df2 = pd.DataFrame(np.random.rand(10, 4), columns=['a', 'b', 'c', 'd'])
@@ -154,7 +149,7 @@ In [21]: df2.plot.bar();
 
 ![bar_plot_multi_ex](/static/images/bar_plot_multi_ex.png)
 
-To produce a stacked bar plot, pass ``stacked=True``:
+要想绘制堆积条状图，可以使用 ``stacked=True``参数:
 
 ``` python
 In [22]: df2.plot.bar(stacked=True);
@@ -162,7 +157,7 @@ In [22]: df2.plot.bar(stacked=True);
 
 ![bar_plot_stacked_ex](/static/images/bar_plot_stacked_ex.png)
 
-To get horizontal bar plots, use the ``barh`` method:
+想要获得水平条状图，可以使用 ``barh`` 方法:
 
 ``` python
 In [23]: df2.plot.barh(stacked=True);
@@ -170,9 +165,9 @@ In [23]: df2.plot.barh(stacked=True);
 
 ![barh_plot_stacked_ex](/static/images/barh_plot_stacked_ex.png)
 
-### Histograms
+### 柱状图
 
-Histograms can be drawn by using the [``DataFrame.plot.hist()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.hist.html#pandas.DataFrame.plot.hist) and [``Series.plot.hist()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.hist.html#pandas.Series.plot.hist) methods.
+可以通过 [``DataFrame.plot.hist()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.hist.html#pandas.DataFrame.plot.hist) 和 [``Series.plot.hist()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.hist.html#pandas.Series.plot.hist) 方法来绘制柱状图：.
 
 ``` python
 In [24]: df4 = pd.DataFrame({'a': np.random.randn(1000) + 1, 'b': np.random.randn(1000),
@@ -187,8 +182,7 @@ Out[26]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65da345e48>
 
 ![hist_new](/static/images/hist_new.png)
 
-A histogram can be stacked using ``stacked=True``. Bin size can be changed
-using the ``bins`` keyword.
+柱状图可以堆积，使用``stacked=True``. 每个桶的大小可以通过使用``bins``关键字进行调整.
 
 ``` python
 In [27]: plt.figure();
@@ -199,9 +193,8 @@ Out[28]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65da30b9b0>
 
 ![hist_new_stacked](/static/images/hist_new_stacked.png)
 
-You can pass other keywords supported by matplotlib ``hist``. For example,
-horizontal and cumulative histograms can be drawn by
-``orientation='horizontal'`` and ``cumulative=True``.
+你也可以向``hist``关键字传入其他matplotlib支持的参数.  例如,
+水平柱状图和累计柱状图可以通过``orientation='horizontal'``以及 ``cumulative=True``参数设置.
 
 ``` python
 In [29]: plt.figure();
@@ -212,10 +205,10 @@ Out[30]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65da69fd68>
 
 ![hist_new_kwargs](/static/images/hist_new_kwargs.png)
 
-See the [``hist``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist) method and the
-[matplotlib hist documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.hist) for more.
+参见 [``hist``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.hist.html#matplotlib.axes.Axes.hist) 方法和
+[matplotlib hist documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.hist) 方法以获得更多的帮助.
 
-The existing interface ``DataFrame.hist`` to plot histogram still can be used.
+现有的``DataFrame.hist``接口仍然可以使用来绘制柱状图.
 
 ``` python
 In [31]: plt.figure();
@@ -226,8 +219,7 @@ Out[32]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65dac9d240>
 
 ![hist_plot_ex](/static/images/hist_plot_ex.png)
 
-[``DataFrame.hist()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html#pandas.DataFrame.hist) plots the histograms of the columns on multiple
-subplots:
+[``DataFrame.hist()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.hist.html#pandas.DataFrame.hist) 可以一次在多个子图中绘制很多列数据的柱状图:
 
 ``` python
 In [33]: plt.figure()
@@ -244,7 +236,7 @@ array([[<matplotlib.axes._subplots.AxesSubplot object at 0x7f6601550cc0>,
 
 ![frame_hist_ex](/static/images/frame_hist_ex.png)
 
-The ``by`` keyword can be specified to plot grouped histograms:
+``by`` 关键字可以用来绘制分组的柱状图:
 
 ``` python
 In [35]: data = pd.Series(np.random.randn(1000))
@@ -260,13 +252,12 @@ array([[<matplotlib.axes._subplots.AxesSubplot object at 0x7f6601550ef0>,
 
 ![grouped_hist](/static/images/grouped_hist.png)
 
-### Box plots
+### 箱状图
 
-Boxplot can be drawn calling [``Series.plot.box()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.box.html#pandas.Series.plot.box) and [``DataFrame.plot.box()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.box.html#pandas.DataFrame.plot.box),
-or [``DataFrame.boxplot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html#pandas.DataFrame.boxplot) to visualize the distribution of values within each column.
+绘制箱状图时，可以使用 [``Series.plot.box()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.box.html#pandas.Series.plot.box) 和 [``DataFrame.plot.box()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.box.html#pandas.DataFrame.plot.box),
+或 [``DataFrame.boxplot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.boxplot.html#pandas.DataFrame.boxplot) 来可视化地展示每一个列中数据的分布.
 
-For instance, here is a boxplot representing five trials of 10 observations of
-a uniform random variable on [0,1).
+例如，这里有一个箱状图，展示了一个均匀分布[0,1)的五次实验，每次10个观察的数据图.
 
 ``` python
 In [37]: df = pd.DataFrame(np.random.rand(10, 5), columns=['A', 'B', 'C', 'D', 'E'])
@@ -277,10 +268,9 @@ Out[38]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65da17f898>
 
 ![box_plot_new](/static/images/box_plot_new.png)
 
-Boxplot can be colorized by passing ``color`` keyword. You can pass a ``dict``
-whose keys are ``boxes``, ``whiskers``, ``medians`` and ``caps``.
-If some keys are missing in the ``dict``, default colors are used
-for the corresponding artists. Also, boxplot has ``sym`` keyword to specify fliers style.
+箱状图可以通过设置 ``color``关键字来改变颜色。你可以传入一个 ``dict``，他的键分别为
+``boxes``, ``whiskers``, ``medians`` 和 ``caps``来改变颜色。
+如果某个键缺失，那么对应的部分就会使用默认颜色。并且，箱状图还有一个 ``sym``关键字，用于设定异常值的类型。
 
 When you pass other type of arguments via ``color`` keyword, it will be directly
 passed to matplotlib for all the ``boxes``, ``whiskers``, ``medians`` and ``caps``

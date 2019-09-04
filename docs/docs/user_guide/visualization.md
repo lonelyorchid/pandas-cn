@@ -1,6 +1,6 @@
-# Visualization
+# 可视化
 
-We use the standard convention for referencing the matplotlib API:
+在引用matplotlib API时，我们会使用标准的习惯用法:
 
 ``` python
 In [1]: import matplotlib.pyplot as plt
@@ -8,23 +8,21 @@ In [1]: import matplotlib.pyplot as plt
 In [2]: plt.close('all')
 ```
 
-We provide the basics in pandas to easily create decent looking plots.
-See the [ecosystem](https://pandas.pydata.org/pandas-docs/stable/ecosystem.html#ecosystem-visualization) section for visualization
-libraries that go beyond the basics documented here.
+We provide the basics in pandas to easily create decent looking plots. 我们同时也在pandas中提供基础的功能，帮助我们能够轻松地画出漂亮的图表。
+参见 [ecosystem](https://pandas.pydata.org/pandas-docs/stable/ecosystem.html#ecosystem-visualization) 的visualizaiton库，获取更多使用说明。
 
-::: tip Note
+::: tip 提示
 
-All calls to ``np.random`` are seeded with 123456.
+所有的``np.random``调用，都已123456作为随机种子。
 
 :::
 
-## Basic plotting: ``plot``
+## 基础图表: ``plot``
 
-We will demonstrate the basics, see the [cookbook](cookbook.html#cookbook-plotting) for
-some advanced strategies.
+我们在这里展示一些基础的用法，参见 [cookbook](cookbook.html#cookbook-plotting) 获取更多高级用法。
 
-The ``plot`` method on Series and DataFrame is just a simple wrapper around
-[``plt.plot()``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot):
+ method on 在Series 和 DataFrame 上使用的``plot`` 方法仅仅是一个简单的
+[``plt.plot()``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.plot.html#matplotlib.axes.Axes.plot)的包装:
 
 ``` python
 In [3]: ts = pd.Series(np.random.randn(1000),
@@ -39,10 +37,9 @@ Out[5]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65d8c0ac50>
 
 ![series_plot_basic](/static/images/series_plot_basic.png)
 
-If the index consists of dates, it calls [``gcf().autofmt_xdate()``](https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.autofmt_xdate)
-to try to format the x-axis nicely as per above.
+如果索引中包含有时间，它会调用 [``gcf().autofmt_xdate()``](https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure.autofmt_xdate)去尝试将时间尽量恰当地展示在x轴.
 
-On DataFrame, [``plot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot) is a convenience to plot all of the columns with labels:
+在针对 DataFrame上, [``plot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot) 可以非常简单地将每一列中的数据，附上标签，并绘制在图表上：
 
 ``` python
 In [6]: df = pd.DataFrame(np.random.randn(1000, 4),
@@ -58,8 +55,7 @@ In [9]: df.plot();
 
 ![frame_plot_basic](/static/images/frame_plot_basic.png)
 
-You can plot one column versus another using the *x* and *y* keywords in
-[``plot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot):
+在[``plot()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.html#pandas.DataFrame.plot)中使用 *x* 和 *y*关键字，你可以在一个图标上绘制多个列的数据:
 
 ``` python
 In [10]: df3 = pd.DataFrame(np.random.randn(1000, 2), columns=['B', 'C']).cumsum()

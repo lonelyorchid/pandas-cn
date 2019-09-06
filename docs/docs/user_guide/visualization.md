@@ -272,13 +272,9 @@ Out[38]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65da17f898>
 ``boxes``, ``whiskers``, ``medians`` 和 ``caps``来改变颜色。
 如果某个键缺失，那么对应的部分就会使用默认颜色。并且，箱状图还有一个 ``sym``关键字，用于设定异常值的类型。
 
-When you pass other type of arguments via ``color`` keyword, it will be directly
-passed to matplotlib for all the ``boxes``, ``whiskers``, ``medians`` and ``caps``
-colorization.
+当你通过 ``color``关键字传递其他类型的参数时，他们将会直接送到matplotlib的全部 ``boxes``, ``whiskers``, ``medians`` 和 ``caps``中，用于色彩的设置.
 
-The colors are applied to every boxes to be drawn. If you want
-more complicated colorization, you can get each drawn artists by passing
-[return_type](#visualization-box-return).
+所有的配色将会用于每一个箱。如果你希望使用个复杂的配色，你可以使用[return_type](#visualization-box-return).
 
 ``` python
 In [39]: color = {'boxes': 'DarkGreen', 'whiskers': 'DarkOrange',
@@ -291,9 +287,7 @@ Out[40]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65da880b00>
 
 ![box_new_colorize](/static/images/box_new_colorize.png)
 
-Also, you can pass other keywords supported by matplotlib ``boxplot``.
-For example, horizontal and custom-positioned boxplot can be drawn by
-``vert=False`` and ``positions`` keywords.
+另外，你也可以传入其他matplotlib的 ``boxplot``方法所支持的参数。例如，水平和自定义位置的箱型图可以通过``vert=False`` 和 ``positions`` 关键字设置。
 
 ``` python
 In [41]: df.plot.box(vert=False, positions=[1, 4, 5, 6, 8])
@@ -302,10 +296,9 @@ Out[41]: <matplotlib.axes._subplots.AxesSubplot at 0x7f65db18ffd0>
 
 ![box_new_kwargs](/static/images/box_new_kwargs.png)
 
-See the [``boxplot``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.boxplot.html#matplotlib.axes.Axes.boxplot) method and the
-[matplotlib boxplot documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.boxplot) for more.
+参见 [``boxplot``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.boxplot.html#matplotlib.axes.Axes.boxplot) 方法和[matplotlib boxplot documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.boxplot) 获取更多信息.
 
-The existing interface ``DataFrame.boxplot`` to plot boxplot still can be used.
+现有的``DataFrame.boxplot``方法仍然可以使用.
 
 ``` python
 In [42]: df = pd.DataFrame(np.random.rand(10, 5))
@@ -317,8 +310,7 @@ In [44]: bp = df.boxplot()
 
 ![box_plot_ex](/static/images/box_plot_ex.png)
 
-You can create a stratified boxplot using the ``by`` keyword argument to create
-groupings.  For instance,
+你可以使用 ``by``关键字来生成组，并绘制分层箱型图。例如：
 
 ``` python
 In [45]: df = pd.DataFrame(np.random.rand(10, 2), columns=['Col1', 'Col2'])
@@ -332,8 +324,7 @@ In [48]: bp = df.boxplot(by='X')
 
 ![box_plot_ex2](/static/images/box_plot_ex2.png)
 
-You can also pass a subset of columns to plot, as well as group by multiple
-columns:
+你也可以截取列的一部分或者多列的分组来绘图：
 
 ``` python
 In [49]: df = pd.DataFrame(np.random.rand(10, 3), columns=['Col1', 'Col2', 'Col3'])

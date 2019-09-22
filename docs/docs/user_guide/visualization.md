@@ -347,8 +347,8 @@ In [53]: bp = df.boxplot(column=['Col1', 'Col2'], by=['X', 'Y'])
 :::
 
 在``boxplot``中,返回值的类型可以通过``return_type``关键字来更改。可以使用的类型包括 ``{"axes", "dict", "both", None}``.
-Faceting, created by ``DataFrame.boxplot`` with the ``by``
-keyword, will affect the output type as well:
+
+通过使用``DataFrame.boxplot`` 的``by``关键字创建的分面（一页多图），也会影响输出的类型：
 
 return_type= | Faceted | Output type
 ---|---|---
@@ -361,7 +361,7 @@ None | Yes | 2-D ndarray of axes
 'both' | No | namedtuple
 'both' | Yes | Series of namedtuples
 
-``Groupby.boxplot`` always returns a ``Series`` of ``return_type``.
+``Groupby.boxplot`` 永远都会返回 ``return_type``的一个 ``Series`` .
 
 ``` python
 In [54]: np.random.seed(1234)
@@ -377,9 +377,7 @@ In [58]: bp = df_box.boxplot(by='g')
 
 ![boxplot_groupby](/static/images/boxplot_groupby.png)
 
-The subplots above are split by the numeric columns first, then the value of
-the ``g`` column. Below the subplots are first split by the value of ``g``,
-then by the numeric columns.
+上面的子图，首先按照数字列分割，然后再按照``g``列分割。下面的子图则是首先按照``g``列分割，然后再按照数字列分割。
 
 ``` python
 In [59]: bp = df_box.groupby('g').boxplot()
@@ -387,12 +385,14 @@ In [59]: bp = df_box.groupby('g').boxplot()
 
 ![groupby_boxplot_vis](/static/images/groupby_boxplot_vis.png)
 
-### Area plot
+### 面积图
 
-You can create area plots with [``Series.plot.area()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.area.html#pandas.Series.plot.area) and [``DataFrame.plot.area()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html#pandas.DataFrame.plot.area).
-Area plots are stacked by default. To produce stacked area plot, each column must be either all positive or all negative values.
+你可以通过使用 [``Series.plot.area()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.area.html#pandas.Series.plot.area) 和 [``DataFrame.plot.area()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html#pandas.DataFrame.plot.area)来建立面积图.
+面积图默认是层积的。要想绘制层积面积图，每个列中的值都必须全部为正或者全部为负。
 
 When input data contains *NaN*, it will be automatically filled by 0. If you want to drop or fill by different values, use ``dataframe.dropna()`` or ``dataframe.fillna()`` before calling *plot*.
+
+如果输入的数据中包含*NaN*, 它们将会自动以0填充。如果你想剔除，或者填充其他数据，请在绘图前使用``dataframe.dropna()`` 或 ``dataframe.fillna()`` 处理你的数据。
 
 ``` python
 In [60]: df = pd.DataFrame(np.random.rand(10, 4), columns=['a', 'b', 'c', 'd'])

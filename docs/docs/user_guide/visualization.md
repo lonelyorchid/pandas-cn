@@ -340,13 +340,13 @@ In [53]: bp = df.boxplot(column=['Col1', 'Col2'], by=['X', 'Y'])
 
 ![box_plot_ex3](/static/images/box_plot_ex3.png)
 
-::: danger Warning
+::: danger 警告
 
-The default changed from ``'dict'`` to ``'axes'`` in version 0.19.0.
+从v0.19.0起，默认从``'dict'`` 更改为 ``'axes'``。
 
 :::
 
-In ``boxplot``, the return type can be controlled by the ``return_type``, keyword. The valid choices are ``{"axes", "dict", "both", None}``.
+在``boxplot``中,返回值的类型可以通过``return_type``关键字来更改。可以使用的类型包括 ``{"axes", "dict", "both", None}``.
 Faceting, created by ``DataFrame.boxplot`` with the ``by``
 keyword, will affect the output type as well:
 

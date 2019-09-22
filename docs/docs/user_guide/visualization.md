@@ -390,8 +390,6 @@ In [59]: bp = df_box.groupby('g').boxplot()
 你可以通过使用 [``Series.plot.area()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.Series.plot.area.html#pandas.Series.plot.area) 和 [``DataFrame.plot.area()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.area.html#pandas.DataFrame.plot.area)来建立面积图.
 面积图默认是层积的。要想绘制层积面积图，每个列中的值都必须全部为正或者全部为负。
 
-When input data contains *NaN*, it will be automatically filled by 0. If you want to drop or fill by different values, use ``dataframe.dropna()`` or ``dataframe.fillna()`` before calling *plot*.
-
 如果输入的数据中包含*NaN*, 它们将会自动以0填充。如果你想剔除，或者填充其他数据，请在绘图前使用``dataframe.dropna()`` 或 ``dataframe.fillna()`` 处理你的数据。
 
 ``` python
@@ -402,7 +400,7 @@ In [61]: df.plot.area();
 
 ![area_plot_stacked](/static/images/area_plot_stacked.png)
 
-To produce an unstacked plot, pass ``stacked=False``. Alpha value is set to 0.5 unless otherwise specified:
+如果要生成非层积图，请传入 ``stacked=False``。
 
 ``` python
 In [62]: df.plot.area(stacked=False);
@@ -410,11 +408,11 @@ In [62]: df.plot.area(stacked=False);
 
 ![area_plot_unstacked](/static/images/area_plot_unstacked.png)
 
-### Scatter plot
+### 散点图
 
-Scatter plot can be drawn by using the [``DataFrame.plot.scatter()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html#pandas.DataFrame.plot.scatter) method.
-Scatter plot requires numeric columns for the x and y axes.
-These can be specified by the ``x`` and ``y`` keywords.
+使用[``DataFrame.plot.scatter()``](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.plot.scatter.html#pandas.DataFrame.plot.scatter)方法，生成散点图。
+
+散点图需要数值型的列来作为x和y的值。他们可以通过 ``x`` 和``y`` 关键字来输入。
 
 ``` python
 In [63]: df = pd.DataFrame(np.random.rand(50, 4), columns=['a', 'b', 'c', 'd'])
@@ -427,6 +425,8 @@ In [64]: df.plot.scatter(x='a', y='b');
 To plot multiple column groups in a single axes, repeat ``plot`` method specifying target ``ax``.
 It is recommended to specify ``color`` and ``label`` keywords to distinguish each groups.
 
+要想在同一组坐标系下绘制多组数据（来自多组列），需要重复使用 ``plot`` 方法，并且将 ``ax``关键字设置为你想要重复使用的坐标系。强烈建议公式使用 ``color`` 和 ``label`` 关键字来区别每个组的数据。
+
 ``` python
 In [65]: ax = df.plot.scatter(x='a', y='b', color='DarkBlue', label='Group 1');
 
@@ -435,8 +435,7 @@ In [66]: df.plot.scatter(x='c', y='d', color='DarkGreen', label='Group 2', ax=ax
 
 ![scatter_plot_repeated](/static/images/scatter_plot_repeated.png)
 
-The keyword ``c`` may be given as the name of a column to provide colors for
-each point:
+关键字 ``c`` 可以传入一个列明，用于指明每一个点的颜色。
 
 ``` python
 In [67]: df.plot.scatter(x='a', y='b', c='c', s=50);
@@ -444,9 +443,7 @@ In [67]: df.plot.scatter(x='a', y='b', c='c', s=50);
 
 ![scatter_plot_colored](/static/images/scatter_plot_colored.png)
 
-You can pass other keywords supported by matplotlib
-[``scatter``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter). The example  below shows a
-bubble chart using a column of the ``DataFrame`` as the bubble size.
+你也可以传入其他matplotlib的[``scatter``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter)所支持的其他参数。下面的例子展示了如何通过一个 ``DataFrame`` 的列来指明气泡大小，从而绘制气泡图。
 
 ``` python
 In [68]: df.plot.scatter(x='a', y='b', s=df['c'] * 200);
@@ -454,8 +451,7 @@ In [68]: df.plot.scatter(x='a', y='b', s=df['c'] * 200);
 
 ![scatter_plot_bubble](/static/images/scatter_plot_bubble.png)
 
-See the [``scatter``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter) method and the
-[matplotlib scatter documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.scatter) for more.
+请参见 [``scatter``](https://matplotlib.org/api/_as_gen/matplotlib.axes.Axes.scatter.html#matplotlib.axes.Axes.scatter) 方法，以及[matplotlib scatter documentation](http://matplotlib.org/api/pyplot_api.html#matplotlib.pyplot.scatter)，获得更多信息。
 
 ### Hexagonal bin plot
 
